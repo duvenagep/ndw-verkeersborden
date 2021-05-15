@@ -4,7 +4,7 @@ import sqlite3
 import sqlalchemy
 
 DATABASE_LOCATION = "sqlite:///verkeersBorden.db"
-TOWN_CODE = 'GM1680'
+TOWN_CODE = 'GM0363'
 URL = 'https://data.ndw.nu/api/rest/static-road-data/traffic-signs/v1/current-state?'
 
 base_url = URL + 'town-code={}'.format(TOWN_CODE)
@@ -35,9 +35,9 @@ if __name__ == "__main__":
     del vkb_df['text_signs']
     print(vkb_df.head())
 
-    # engine = sqlalchemy.create_engine(DATABASE_LOCATION)
-    # connection = sqlite3.connect("verkeersBorden.db")
-    # cursor = connection.cursor()
+    engine = sqlalchemy.create_engine(DATABASE_LOCATION)
+    connection = sqlite3.connect("verkeersBorden.db")
+    cursor = connection.cursor()
 
 #     sqlquery = """
 #     CREATE TABLE IF NOT EXISTS Borden (
@@ -79,8 +79,8 @@ if __name__ == "__main__":
     # connection.commit()
     # df_sql.to_sql("Borden2", connection,
     # # if_exists='append', index=False)
-    # try:
-    #     vkb_df.to_sql("Borden", connection,
-    #                   if_exists='append', index=False)
-    # except:
-    #     print("Does not work")
+    try:
+        vkb_df.to_sql("Borden", connection,
+                      if_exists='append', index=False)
+    except:
+        print("Does not work")
