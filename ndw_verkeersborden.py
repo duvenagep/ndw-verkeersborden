@@ -39,46 +39,41 @@ if __name__ == "__main__":
     connection = sqlite3.connect("verkeersBorden.db")
     cursor = connection.cursor()
 
-#     sqlquery = """
-#     CREATE TABLE IF NOT EXISTS Borden (
-#     id                    VARCHAR (200) PRIMARY KEY
-#                                         UNIQUE,
-#     type                  VARCHAR (200),
-#     schema_version        VARCHAR (200),
-#     validated             VARCHAR (200),
-#     validated_on          VARCHAR (200),
-#     user_id               VARCHAR (200),
-#     organisation_id       VARCHAR (200),
-#     rvv_code              VARCHAR (200),
-#     text_signs            VARCHAR (200),
-#     publication_timestamp VARCHAR (200),
-#     latitude              VARCHAR (200),
-#     longitude             VARCHAR (200),
-#     x                     VARCHAR (200),
-#     y                     VARCHAR (200),
-#     placement             VARCHAR (200),
-#     side                  VARCHAR (200),
-#     road_name             VARCHAR (200),
-#     road_type             VARCHAR (200),
-#     number                VARCHAR (200),
-#     wvk_id                VARCHAR (200),
-#     name                  VARCHAR (200),
-#     code                  VARCHAR (200),
-#     townname              VARCHAR (200),
-#     image                 VARCHAR (200),
-#     first_seen            VARCHAR (200),
-#     last_seen             VARCHAR (200),
-#     removed               VARCHAR (200)
-# );
-#     """
-    # new_id = df_sql['id'][0]
+    sqlquery = """
+    CREATE TABLE IF NOT EXISTS Borden (
+    id                    VARCHAR (200) PRIMARY KEY
+                                        UNIQUE,
+    type                  VARCHAR (200),
+    schema_version        VARCHAR (200),
+    validated             VARCHAR (200),
+    validated_on          VARCHAR (200),
+    user_id               VARCHAR (200),
+    organisation_id       VARCHAR (200),
+    rvv_code              VARCHAR (200),
+    text_signs            VARCHAR (200),
+    publication_timestamp VARCHAR (200),
+    latitude              VARCHAR (200),
+    longitude             VARCHAR (200),
+    x                     VARCHAR (200),
+    y                     VARCHAR (200),
+    placement             VARCHAR (200),
+    side                  VARCHAR (200),
+    road_name             VARCHAR (200),
+    road_type             VARCHAR (200),
+    number                VARCHAR (200),
+    wvk_id                VARCHAR (200),
+    name                  VARCHAR (200),
+    code                  VARCHAR (200),
+    townname              VARCHAR (200),
+    image                 VARCHAR (200),
+    first_seen            VARCHAR (200),
+    last_seen             VARCHAR (200),
+    removed               VARCHAR (200)
+);
+    """
+    cursor.execute(sqlquery)
+    connection.commit()
 
-    # sqlquery2 = "INSERT INTO Borden(id) VALUES({})".format(new_id)
-    # # print(sqlquery2)
-    # cursor.execute(sqlquery2)
-    # connection.commit()
-    # df_sql.to_sql("Borden2", connection,
-    # # if_exists='append', index=False)
     try:
         vkb_df.to_sql("Borden", connection,
                       if_exists='append', index=False)
